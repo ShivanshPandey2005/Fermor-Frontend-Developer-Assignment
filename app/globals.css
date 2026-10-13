@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+  --color-ground: #0D0F10;
+  --color-surface: rgba(18, 21, 26, 0.8);
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-mint: #75FB90;
+  --color-mint-dim: rgba(117, 251, 144, 0.12);
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.45);
+  --font-inter: 'Inter', sans-serif;
+  --font-poppins: 'Poppins', sans-serif;
+}
+
+/* ─── Base resets ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ground);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Keyframe animations ─────────────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+@keyframes trust-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+@keyframes chart-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes float-up-down {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── SIP range slider ─────────────────────────────────────────────────────── */
+.sip-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  accent-color: var(--color-mint);
+}
+
+.sip-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-mint);
+  cursor: pointer;
+  border: 2px solid #0D0F10;
+  box-shadow: 0 0 0 3px rgba(117, 251, 144, 0.2), 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.sip-range::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 5px rgba(117, 251, 144, 0.25), 0 2px 12px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
+.sip-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-mint);
+  cursor: pointer;
+  border: 2px solid #0D0F10;
+  box-shadow: 0 0 0 3px rgba(117, 251, 144, 0.2);
+}
+
+/* ─── Trust bar scroll animation ─────────────────────────────────────────── */
+.trust-scroll-track {
+  animation: trust-scroll 28s linear infinite;
+}
+
+.trust-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Bento grid responsive ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .bento-card {
+    grid-column: span 12 !important;
+    grid-row: auto !important;
+  }
+}
+
+/* ─── Calculator grid responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .calc-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .calc-inputs {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 28px 24px !important;
+  }
+  .calc-results {
+    padding: 28px 24px !important;
+  }
+}
+
+/* ─── Footer grid responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px 24px !important;
+  }
+  .footer-grid > :first-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .footer-grid > :first-child {
+    grid-column: span 1;
+  }
+}
+
+/* ─── Custom scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0D0F10;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Focus styles ────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-mint);
+  outline-offset: 2px;
+}
+
+/* ─── Selection color ─────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(117, 251, 144, 0.25);
+  color: #ffffff;
+}
